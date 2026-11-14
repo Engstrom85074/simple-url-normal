@@ -50,3 +50,10 @@ string, and an `Error` if `input` is not a valid absolute URL.
 
 Returns `true` when `normalizeUrl(a) === normalizeUrl(b)`. Propagates the same
 errors as `normalizeUrl`.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
